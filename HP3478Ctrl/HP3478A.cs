@@ -1,6 +1,5 @@
 ﻿using System;
 using Ivi.Visa;
-using System.Text.RegularExpressions;
 
 namespace HP3478Ctrl
 {
@@ -39,7 +38,6 @@ namespace HP3478Ctrl
         public static string ReadCalibration(string addr) {
             string calStr = "";
             using (IGpibSession dev = GlobalResourceManager.Open(addr) as IGpibSession) {
-
                 dev.Clear();
                 //dev.RawIO.Write("H0");
                 //dev.ReadStatusByte();

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Ivi.Visa;
@@ -12,22 +14,18 @@ namespace HP3478Ctrl
         public MainWindow() {
             InitializeComponent();
         }
-        public Task<string> GetCalData() {
-            return Task.Run(() => HP3478A.ReadCalibration(AddressTextBox.Text));
-        }
         private void EnableButtons(bool state) {
             VerifyButton.IsEnabled = state;
             WriteButton.IsEnabled = state;
             ReadButton.IsEnabled = state;
         }
-        private async void ReadButton_Click(object sender, RoutedEventArgs e) {
+        private void ReadButton_Click(object sender, RoutedEventArgs e) {
             try {
                 DataTextBox.Text = "Reading....";
                 EnableButtons(false);
-                string calString = await GetCalData();
-                DataTextBox.Text = calString;
-            } catch (VisaException exc) {
-                MessageBox.Show("VISA error happened: \n\n " + exc.Message, "VISA Error",
+                DataTextBox.Text = HP3478A.ReadCalibration(AddressTextBox.Text);
+            } catch (Exception exc) {
+                MessageBox.Show("An Exception occured: \n\n " + exc.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             } finally {
                 EnableButtons(true);
@@ -42,11 +40,11 @@ namespace HP3478Ctrl
                     MessageBox.Show("Calibration matches provided data.", "Calibration Verified",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                 } else {
-                    MessageBox.Show("Calibration DOES NOT match provided data.", "Calibration MISTATCH",
+                    MessageBox.Show("Calibration DOES NOT match provided data.", "Calibration MISMATCH",
                         MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
-            } catch (VisaException exc) {
-                MessageBox.Show("VISA error happened: \n\n " + exc.Message, "VISA Error",
+            } catch (Exception exc) {
+                MessageBox.Show("An Exception occured: \n\n " + exc.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             } finally {
                 EnableButtons(true);
@@ -66,8 +64,8 @@ namespace HP3478Ctrl
             } catch (FormatException fex) {
                 MessageBox.Show("Formatting error happened: \n\n " + fex.Message, "Format Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
-            } catch (VisaException exc) {
-                MessageBox.Show("VISA error happened: \n\n " + exc.Message, "VISA Error",
+            } catch (Exception exc) {
+                MessageBox.Show("An Exception occured: \n\n " + exc.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
