@@ -21,9 +21,10 @@ namespace HP3478Ctrl
             try {
                 DataTextBox.Text = "Reading....";
                 EnableButtons(false);
-                DataTextBox.Text = HP3478A.ReadCalibration(AddressTextBox.Text);
+                string calString = HP3478A.ReadCalibration(AddressTextBox.Text);
+                DataTextBox.Text = calString;
             } catch (Exception exc) {
-                MessageBox.Show("An Exception occured: \n\n " + exc.Message, "Error",
+                MessageBox.Show("An exception occured: \n\n " + exc.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             } finally {
                 EnableButtons(true);
@@ -42,7 +43,7 @@ namespace HP3478Ctrl
                         MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             } catch (Exception exc) {
-                MessageBox.Show("An Exception occured: \n\n " + exc.Message, "Error",
+                MessageBox.Show("An exception occured: \n\n " + exc.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             } finally {
                 EnableButtons(true);
@@ -63,7 +64,7 @@ namespace HP3478Ctrl
                 MessageBox.Show("Formatting error happened: \n\n " + fex.Message, "Format Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             } catch (Exception exc) {
-                MessageBox.Show("An Exception occured: \n\n " + exc.Message, "Error",
+                MessageBox.Show("An exception occured: \n\n " + exc.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
