@@ -49,7 +49,7 @@ namespace HP3478Ctrl
                 EnableButtons(true);
             }
         }
-
+        
         private void WriteButton_Click(object sender, RoutedEventArgs e) {
             try {
                 string calStr = DataTextBox.Text;
@@ -67,6 +67,10 @@ namespace HP3478Ctrl
                 MessageBox.Show("An exception occured: \n\n " + exc.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
 
     }

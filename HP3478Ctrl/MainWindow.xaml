@@ -16,13 +16,14 @@
         <TextBox Grid.Column="1" Grid.Row="0" x:Name="AddressTextBox" Text="GPIB0::23::INSTR"/>
         <Label Grid.Column="0" Grid.Row="1" Content="Data:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBox Grid.Column="1" Grid.Row="1" x:Name="DataTextBox" Text="" FontFamily="Courier New" AcceptsReturn="True" TextWrapping="Wrap"/>
-        <WrapPanel Grid.Row="2" Grid.Column="1">
-            <Button x:Name="ReadButton"  Content="Read" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="ReadButton_Click" />
+        <WrapPanel Grid.Row="2" Grid.Column="1" RenderTransformOrigin="0.577,0.538">
+            <Button x:Name="ReadButton"  Content="Read" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="ReadButton_Click" Width="50" />
             <Separator Opacity="0" Width="10"/>
-            <Button x:Name="VerifyButton"  Content="Verify" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="VerifyButton_Click" />
+            <Button x:Name="VerifyButton"  Content="Verify" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="VerifyButton_Click" Width="50" />
             <Separator Opacity="0" Width="10"/>
-            <Button x:Name="WriteButton"  Content="Write" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="WriteButton_Click"  />
-            <Separator Opacity="0" Width="10"/>
+            <Button x:Name="WriteButton"  Content="Write" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="WriteButton_Click" Width="50"  />
+            <Separator Opacity="0" Width="50"/>
+            <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ExitButton_Click" Width="50" RenderTransformOrigin="4.383,0.496" />
         </WrapPanel>
     </Grid>
 </Window>
